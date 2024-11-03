@@ -4,8 +4,8 @@ import 'package:quiz_app_june/utils/color_constants.dart';
 import 'package:quiz_app_june/view/quesitons_screen/questions_screen.dart';
 
 class ResultsScreen extends StatefulWidget {
-  const ResultsScreen({super.key, required this.rightAnsCount});
-  final int rightAnsCount;
+  const ResultsScreen({super.key, required this.RightAnsCount});
+  final int RightAnsCount;
 
   @override
   State<ResultsScreen> createState() => _ResultsScreenState();
@@ -14,7 +14,7 @@ class ResultsScreen extends StatefulWidget {
 class _ResultsScreenState extends State<ResultsScreen> {
   int starCount = 0;
   calculateStarCount() {
-    var percentage = (widget.rightAnsCount / DummyDb.questionList.length) * 100;
+    var percentage = (widget.RightAnsCount / DummyDb.questionList.length) * 100;
 
     if (percentage >= 80) {
       starCount = 3;
@@ -80,7 +80,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                     color: ColorConstants.textColor),
               ),
               Text(
-                " 6/13",
+                "${widget.RightAnsCount} / ${DummyDb.questionList.length}",
                 style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,

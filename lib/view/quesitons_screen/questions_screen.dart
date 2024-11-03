@@ -13,9 +13,10 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
-  int questionIndex = 0; //sidhofusg
+  int questionIndex = 0;
+  int rightAnsCount = 0;
+  int? selectedAnswerIndex;
 
-  int? selectedAnswerIndex; //soihfosioeuf
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,8 +72,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     onTap: () {
                       if (selectedAnswerIndex == null) {
                         selectedAnswerIndex = optionIndex;
+
                         setState(() {});
-                        print(selectedAnswerIndex);
+                        if (selectedAnswerIndex ==
+                            DummyDb.questionList[questionIndex]
+                                ["answerIndex"]) {
+                          rightAnsCount++;
+                        }
                       }
                     },
                     child: Container(
@@ -111,9 +117,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             if (selectedAnswerIndex != null)
               InkWell(
                 onTap: () {
-                  selectedAnswerIndex = null; // lksdfjlksdlf
+                  selectedAnswerIndex = null;
                   if (questionIndex < DummyDb.questionList.length - 1) {
-                    //oisdjofiois
                     questionIndex++;
                     setState(() {});
                   } else {
@@ -122,7 +127,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ResultsScreen(
-                          rightAnsCount: 5,
+                          RightAnsCount: rightAnsCount,
                         ),
                       ),
                     );
@@ -151,16 +156,14 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     );
   }
 
-  Color getColor(int currentOptinIndex) {
-    //sdljfisjodf
+  Color getColor(int currentOptionIndex) {
     if (selectedAnswerIndex != null &&
-        currentOptinIndex ==
+        currentOptionIndex ==
             DummyDb.questionList[questionIndex]["answerIndex"]) {
       return ColorConstants.rightAnswerColor;
     }
 
-//soidfoshidhfo
-    if (selectedAnswerIndex == currentOptinIndex) {
+    if (selectedAnswerIndex == currentOptionIndex) {
       if (selectedAnswerIndex ==
           DummyDb.questionList[questionIndex]["answerIndex"]) {
         return ColorConstants.rightAnswerColor;
