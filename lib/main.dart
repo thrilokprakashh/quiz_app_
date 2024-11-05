@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app_june/utils/color_constants.dart';
-import 'package:quiz_app_june/view/quesitons_screen/questions_screen.dart';
+import 'package:quiz_app_june/view/dashbord_screen/dashbord_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           scaffoldBackgroundColor: ColorConstants.scaffoldBackgroundColor),
-      home: QuestionsScreen(),
+      home: DashbordPage(),
     );
   }
 }

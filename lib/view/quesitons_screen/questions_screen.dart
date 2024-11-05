@@ -6,11 +6,14 @@ import 'package:lottie/lottie.dart';
 import 'package:quiz_app_june/dummy_db.dart';
 import 'package:quiz_app_june/utils/animation_constent.dart';
 import 'package:quiz_app_june/utils/color_constants.dart';
+import 'package:quiz_app_june/view/dashbord_screen/dashbord_page.dart';
 import 'package:quiz_app_june/view/quesitons_screen/results_screem/results_screen.dart';
 
 class QuestionsScreen extends StatefulWidget {
   final CountDownController countDownController = CountDownController();
-  QuestionsScreen({super.key});
+  QuestionsScreen({
+    super.key,
+  });
 
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
@@ -70,7 +73,15 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     border: Border.all(width: 2, color: Colors.white54),
                   ),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DashbordPage(),
+                        ),
+                        (route) => false,
+                      );
+                    },
                     icon: Icon(
                       Icons.close,
                       color: Colors.white,
@@ -172,56 +183,58 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               ),
             ),
             Column(
-                children: List.generate(
-              DummyDb.questionList[questionIndex]["options"].length,
-              (optionIndex) {
-                var currentQuestion = DummyDb.questionList[questionIndex];
+              children: List.generate(
+                DummyDb.questionList[questionIndex]["options"].length,
+                (optionIndex) {
+                  var currentQuestion = DummyDb.questionList[questionIndex];
 
-                return Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: InkWell(
-                    onTap: () {
-                      if (selectedAnswerIndex == null) {
-                        selectedAnswerIndex = optionIndex;
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: InkWell(
+                      onTap: () {
+                        if (selectedAnswerIndex == null) {
+                          selectedAnswerIndex = optionIndex;
 
-                        setState(() {});
-                        if (selectedAnswerIndex ==
-                            DummyDb.questionList[questionIndex]
-                                ["answerIndex"]) {
-                          rightAnsCount++;
+                          setState(() {});
+                          if (selectedAnswerIndex ==
+                              DummyDb.questionList[questionIndex]
+                                  ["answerIndex"]) {
+                            rightAnsCount++;
+                          }
                         }
-                      }
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-                      decoration: BoxDecoration(
+                      },
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(
                             color: getColor(optionIndex),
                             width: 2,
-                          )),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            currentQuestion["options"][optionIndex],
-                            style: TextStyle(
-                                color: ColorConstants.textColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18),
                           ),
-                          Icon(
-                            Icons.circle_outlined,
-                            color: ColorConstants.textColor,
-                          )
-                        ],
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              currentQuestion["options"][optionIndex],
+                              style: TextStyle(
+                                  color: ColorConstants.textColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
+                            Icon(
+                              Icons.circle_outlined,
+                              color: ColorConstants.textColor,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
-            )),
+                  );
+                },
+              ),
+            ),
             SizedBox(height: 20),
 
             // if answer selected  show next button
