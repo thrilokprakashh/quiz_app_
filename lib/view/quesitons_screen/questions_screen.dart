@@ -74,13 +74,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                   ),
                   child: IconButton(
                     onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DashbordPage(),
-                        ),
-                        (route) => false,
-                      );
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => DashbordPage(),), (route) => false,);
                     },
                     icon: Icon(
                       Icons.close,

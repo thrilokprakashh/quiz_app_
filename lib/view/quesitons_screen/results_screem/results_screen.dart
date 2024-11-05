@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app_june/dummy_db.dart';
 import 'package:quiz_app_june/utils/color_constants.dart';
+import 'package:quiz_app_june/view/dashbord_screen/dashbord_page.dart';
 import 'package:quiz_app_june/view/quesitons_screen/questions_screen.dart';
 
 class ResultsScreen extends StatefulWidget {
@@ -115,6 +116,44 @@ class _ResultsScreenState extends State<ResultsScreen> {
                       ),
                       Text(
                         "Restart",
+                        style: TextStyle(
+                            color: ColorConstants.scaffoldBackgroundColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DashbordPage(),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: ColorConstants.textColor,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.home),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Text(
+                        "Home",
                         style: TextStyle(
                             color: ColorConstants.scaffoldBackgroundColor,
                             fontWeight: FontWeight.bold,

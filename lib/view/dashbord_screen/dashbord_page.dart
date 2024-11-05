@@ -176,9 +176,7 @@ class _DashbordPageState extends State<DashbordPage> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => QuestionsScreen(
-                                
-                              ),
+                              builder: (context) => QuestionsScreen(),
                             ),
                           );
                         }
