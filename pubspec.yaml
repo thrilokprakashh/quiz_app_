@@ -39,6 +39,7 @@ dependencies:
   circular_countdown_timer: ^0.2.4
   flutter_rounded_progress_bar: ^0.3.2
   provider: ^6.1.2
+  flutter_animate: ^4.5.2
 
 dev_dependencies:
   flutter_test:
